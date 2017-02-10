@@ -1,7 +1,7 @@
 package Deal;
 
 import Party.Party;
-import Product.Product;
+import Products.Product;
 
 import java.util.Date;
 

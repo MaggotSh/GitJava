@@ -1,7 +1,7 @@
 package Program;
 
 import Deal.Deal;
-import Product.Product;
+import Products.Product;
 
 class DealOut {
 
@@ -27,6 +27,14 @@ class DealOut {
             }
             s.append("Sum ");
             s.append(d.getSum());
+            s.append("\n");
+            s.append("Bayer        ");
+            s.append("adress : ");
+            s.append(d.getBayer().getAdress());
+            s.append("\n");
+            s.append("Seller        ");
+            s.append("adress : ");
+            s.append(d.getSeller().getAdress());
             System.out.println(s.toString());
     }
 }

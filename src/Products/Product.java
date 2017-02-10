@@ -1,6 +1,8 @@
-package Product;
+package Products;
 
-public class Product {
+public abstract class Product {
+
+    private static final int DEF_DISCONT = 10;
 
     private String title;
     private double price;
@@ -26,6 +28,17 @@ public class Product {
     }
 
     public double getCost(){
-        return quntity*price;
+        double realCost = quntity*price;
+
+        return realCost - realCost*colcDiscont()/100;
     }
+
+    protected int colcDiscont(){
+        if(quntity>10){
+            return DEF_DISCONT;
+        } else
+            return 0;
+    }
+
+
 }
