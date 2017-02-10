@@ -26,7 +26,7 @@ class Input {
 
     private static Party inputParty(String s) {
         String partyName = keyboard(s);
-        String partyAdress = keyboard("adress");
+        String partyAdress = keyboard(s + " adress");
         Party party = new Party();
         party.setName(partyName);
         party.setAdress(partyAdress);
