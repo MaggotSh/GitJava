@@ -6,35 +6,29 @@ import Products.Product;
 class DealOut {
 
     static void output(Deal d){
-        StringBuilder s = new StringBuilder();
-            s.append("Deal      ");
-            s.append(d.getDate());
-            s.append("\n");
-            s.append("  ");
-            s.append(d.getBayer().getName());
-            s.append("  buys in ");
-            s.append(d.getSeller().getName());
-            s.append("\n");
+        StringBuilder sb = new StringBuilder();
+            sb.append("Deal      ");
+            sb.append(d.getDate());
+            sb.append("\n");
+            sb.append("  ");
+            sb.append(d.getBayer().getName());
+            sb.append("  buys in ");
+            sb.append(d.getSeller().getName());
+            sb.append("\n");
 
             for(Product pr : d.getProducts()){
-                s.append("      ");
-                s.append(pr.getTitle());
-                s.append(" ");
-                s.append(pr.getQuntity());
-                s.append(" x ");
-                s.append(pr.getCost());
-                s.append("\n");
+                sb.append(pr);
+                sb.append("\n");
             }
-            s.append("Sum ");
-            s.append(d.getSum());
-            s.append("\n");
-            s.append("Bayer        ");
-            s.append("adress : ");
-            s.append(d.getBayer().getAdress());
-            s.append("\n");
-            s.append("Seller        ");
-            s.append("adress : ");
-            s.append(d.getSeller().getAdress());
-            System.out.println(s.toString());
+            sb.append("Sum ");
+            sb.append(d.getSum());
+            sb.append("\n");
+            sb.append("Bayer        ");
+            sb.append(d.getBayer());
+            sb.append("\n");
+            sb.append("Seller        ");
+            sb.append(d.getSeller());
+
+            System.out.println(sb.toString());
     }
 }

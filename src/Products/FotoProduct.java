@@ -27,4 +27,17 @@ public class FotoProduct extends Product {
         }
         return def;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("  fotik ");
+        sb.append(super.toString());
+        sb.append("  Megapx: ");
+        sb.append(getMegapx());
+        if(isDigital()){
+            sb.append(" is digital   ");
+        }
+        return sb.toString();
+    }
 }

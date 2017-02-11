@@ -25,9 +25,20 @@ class Input {
     }
 
     private static Party inputParty(String s) {
+        Party party = new Party();
         String partyName = keyboard(s);
         String partyAdress = keyboard(s + " adress");
-        Party party = new Party();
+        if(keyboard("do you want to add more info about " + s + " \"yes\" or \"not\"").equalsIgnoreCase("yes")){
+            int k = Integer.valueOf(keyboard("how many types do you want?"));
+            String[] keys = new String[k];
+            String[] values = new String[k];
+            for(int i=0; i<keys.length; i++){
+                keys[i] = keyboard("what type of info you want to add");
+                values[i] = keyboard("the " + keys[i]);
+            }
+            party.setKeys(keys);
+            party.setValues(values);
+        }
         party.setName(partyName);
         party.setAdress(partyAdress);
         return party;
@@ -37,23 +48,23 @@ class Input {
         String title = keyboard("title");
         String priceStr = keyboard("price");
         String quntityStr = keyboard("quntity");
+        String change = keyboard("Change \"foto\" or \"botinki\"");
 
-        String product = keyboard("Change \"foto\" or \"botinki\"");
-        if("foto".equals(product)){
+        if("foto".equalsIgnoreCase(change)){
             FotoProduct pr = inputFotoProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
             pr.setQuntity(Integer.valueOf(quntityStr));
             return pr;
-        }else if("botinki".equals(product)){
+        }else if("botinki".equalsIgnoreCase(change)) {
             BotinkiProduct pr = inputBotinkiProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
             pr.setQuntity(Integer.valueOf(quntityStr));
             return pr;
-        }
-        return null;
+        }else throw new RuntimeException("is unknown product");
     }
+
 
     private static BotinkiProduct inputBotinkiProduct() {
         BotinkiProduct pr = new BotinkiProduct();
@@ -68,12 +79,12 @@ class Input {
     private static FotoProduct inputFotoProduct() {
         FotoProduct pr = new FotoProduct();
 
-        String digitalStr = keyboard("Change \"digital\" or \"not\"");
-        if("digital".equals(digitalStr)){
+        String change = keyboard("Change \"digital\" or \"not\"");
+        if("digital".equals(change)){
             pr.setDigital(true);
-        }else if("not".equals(digitalStr)){
+        }else if("not".equals(change)){
             pr.setDigital(false);
-        }
+        }else throw new RuntimeException("Mistaeks input");
         String megapxStr = keyboard("megaph");
         pr.setMegapx(Integer.valueOf(megapxStr));
 

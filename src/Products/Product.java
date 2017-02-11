@@ -40,5 +40,16 @@ public abstract class Product {
             return 0;
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getTitle());
+        sb.append(" ");
+        sb.append(getQuntity());
+        sb.append(" x ");
+        sb.append(getPrice());
+        sb.append("  : ");
+        sb.append(getCost());
+        return sb.toString();
+    }
 }
