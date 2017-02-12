@@ -1,23 +1,16 @@
 package Party;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Party {
 
     private String name;
     private String adress;
-    private String[] keys;
-    private String[] values;
+    private Map<String,String> info = new HashMap<>();
 
-    public String[] getKeys() {
-        return keys;
-    }
-    public void setKeys(String[] keys) {
-        this.keys = keys;
-    }
-    public String[] getValues() {
-        return values;
-    }
-    public void setValues(String[] values) {
-        this.values = values;
+    public void addInfo(String a, String b) {
+        this.info.put(a,b);
     }
     public String getAdress() {
         return adress;
@@ -40,12 +33,12 @@ public class Party {
         sb.append("; adress : ");
         sb.append(getAdress());
         sb.append("; ");
-        if(keys.length>0){
-            for(int i=0; i<keys.length; i++) {
+        if(!info.isEmpty()){
+            for(Map.Entry<String,String> en : info.entrySet()) {
 
-                sb.append(keys[i]);
+                sb.append(en.getKey());
                 sb.append(": ");
-                sb.append(values[i]);
+                sb.append(en.getValue());
                 sb.append("; ");
             }
         }

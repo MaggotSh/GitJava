@@ -9,17 +9,21 @@ import Products.Product;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 class Input {
 
     static Deal input() {
+        Map<Product,Integer> products = new HashMap<>();
         Party bayer = inputParty("bayer");
         Party seller = inputParty("seller");
+        products.put(inputProduct(),Integer.valueOf(keyboard("quntity")));
+        while ("yes".equalsIgnoreCase(keyboard("you want to add product\"yes\" or \"not\"?"))){
+            products.put(inputProduct(),Integer.valueOf(keyboard("quntity")));
+        }
 
-        Product p1 = inputProduct();
-        Product p2 = inputProduct();
-        Product p3 = inputProduct();
-        Product[] products = new Product[]{p1, p2, p3};
+
 
         return new Deal(bayer, seller, products);
     }
@@ -28,16 +32,8 @@ class Input {
         Party party = new Party();
         String partyName = keyboard(s);
         String partyAdress = keyboard(s + " adress");
-        if(keyboard("do you want to add more info about " + s + " \"yes\" or \"not\"").equalsIgnoreCase("yes")){
-            int k = Integer.valueOf(keyboard("how many types do you want?"));
-            String[] keys = new String[k];
-            String[] values = new String[k];
-            for(int i=0; i<keys.length; i++){
-                keys[i] = keyboard("what type of info you want to add");
-                values[i] = keyboard("the " + keys[i]);
-            }
-            party.setKeys(keys);
-            party.setValues(values);
+        while (keyboard("do you want to add more info about " + s + " \"yes\" or \"not\"?").equalsIgnoreCase("yes")){
+            party.addInfo(keyboard("what type of info you want to add"),keyboard("this"));
         }
         party.setName(partyName);
         party.setAdress(partyAdress);
@@ -47,20 +43,17 @@ class Input {
     private static Product inputProduct() {
         String title = keyboard("title");
         String priceStr = keyboard("price");
-        String quntityStr = keyboard("quntity");
-        String change = keyboard("Change \"foto\" or \"botinki\"");
+        String change = keyboard("Change \"foto\" or \"botinki\"?");
 
         if("foto".equalsIgnoreCase(change)){
             FotoProduct pr = inputFotoProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
-            pr.setQuntity(Integer.valueOf(quntityStr));
             return pr;
         }else if("botinki".equalsIgnoreCase(change)) {
             BotinkiProduct pr = inputBotinkiProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
-            pr.setQuntity(Integer.valueOf(quntityStr));
             return pr;
         }else throw new RuntimeException("is unknown product");
     }
@@ -79,7 +72,7 @@ class Input {
     private static FotoProduct inputFotoProduct() {
         FotoProduct pr = new FotoProduct();
 
-        String change = keyboard("Change \"digital\" or \"not\"");
+        String change = keyboard("Change \"digital\" or \"not\"?");
         if("digital".equals(change)){
             pr.setDigital(true);
         }else if("not".equals(change)){

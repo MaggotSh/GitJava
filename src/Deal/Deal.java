@@ -4,15 +4,16 @@ import Party.Party;
 import Products.Product;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Deal {
 
     private Date date;
     private Party bayer;
     private Party seller;
-    private Product[] products;
+    private Map<Product,Integer> products;
 
-    public Deal (Party bayer, Party seller, Product[] products){
+    public Deal (Party bayer, Party seller, Map<Product,Integer> products){
 
         date = new Date();
         this.bayer = bayer;
@@ -29,14 +30,14 @@ public class Deal {
     public Party getSeller() {
         return seller;
     }
-    public Product[] getProducts() {
+    public Map<Product,Integer>  getProducts() {
         return products;
     }
 
     public double getSum(){
         double rez = 0;
-        for(Product pr : products){
-            rez += pr.getCost();
+        for(Map.Entry<Product,Integer> entry : products.entrySet()){
+            rez += entry.getKey().getCost(entry.getValue());
         }
         return rez;
     }
