@@ -4,12 +4,14 @@ import Deal.Deal;
 import Party.Party;
 import Products.BotinkiProduct;
 import Products.FotoProduct;
+import Products.ListProducts;
 import Products.Product;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Input {
@@ -41,6 +43,18 @@ class Input {
     }
 
     private static Product inputProduct() {
+        if("yes".equalsIgnoreCase(keyboard("you want change product? \"yes\" or \"not\""))){
+         if(!ListProducts.list.isEmpty()){
+             int id =0;
+             for(Product pr : ListProducts.list){
+                 System.out.println(id + "  " + pr.toString());
+             }
+             return ListProducts.list.get(Integer.valueOf(keyboard("number")));
+         }else{
+             System.out.println("sorry, not have products to change");
+         }
+        }
+
         String title = keyboard("title");
         String priceStr = keyboard("price");
         String change = keyboard("Change \"foto\" or \"botinki\"?");
@@ -49,11 +63,13 @@ class Input {
             FotoProduct pr = inputFotoProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
+            ListProducts.list.add(pr);
             return pr;
         }else if("botinki".equalsIgnoreCase(change)) {
             BotinkiProduct pr = inputBotinkiProduct();
             pr.setTitle(title);
             pr.setPrice(Double.valueOf(priceStr));
+            ListProducts.list.add(pr);
             return pr;
         }else throw new RuntimeException("is unknown product");
     }
@@ -78,7 +94,7 @@ class Input {
         }else if("not".equals(change)){
             pr.setDigital(false);
         }else throw new RuntimeException("Mistaeks input");
-        String megapxStr = keyboard("megaph");
+        String megapxStr = keyboard("megapx");
         pr.setMegapx(Integer.valueOf(megapxStr));
 
         return pr;
