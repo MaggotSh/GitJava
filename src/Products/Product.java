@@ -6,7 +6,6 @@ public abstract class Product {
 
     private String title;
     private double price;
-    private int quntity;
 
     public String getTitle() {
         return title;
@@ -20,20 +19,14 @@ public abstract class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public int getQuntity() {
-        return quntity;
-    }
-    public void setQuntity(int quntity) {
-        this.quntity = quntity;
-    }
 
-    public double getCost(){
+    public double getCost(int quntity){
         double realCost = quntity*price;
 
-        return realCost - realCost*colcDiscont()/100;
+        return realCost - realCost*colcDiscont(quntity)/100;
     }
 
-    protected int colcDiscont(){
+    protected int colcDiscont(int quntity){
         if(quntity>10){
             return DEF_DISCONT;
         } else
@@ -44,12 +37,8 @@ public abstract class Product {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getTitle());
-        sb.append(" ");
-        sb.append(getQuntity());
-        sb.append(" x ");
+        sb.append(" prise is: ");
         sb.append(getPrice());
-        sb.append("  : ");
-        sb.append(getCost());
         return sb.toString();
     }
 }

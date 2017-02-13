@@ -3,6 +3,8 @@ package Program;
 import Deal.Deal;
 import Products.Product;
 
+import java.util.Map;
+
 class DealOut {
 
     static void output(Deal d){
@@ -16,8 +18,10 @@ class DealOut {
             sb.append(d.getSeller().getName());
             sb.append("\n");
 
-            for(Product pr : d.getProducts()){
-                sb.append(pr);
+            for(Map.Entry<Product,Integer> en : d.getProducts().entrySet()){
+                sb.append(en.getKey());
+                sb.append("     || x ");
+                sb.append(en.getValue());
                 sb.append("\n");
             }
             sb.append("Sum ");

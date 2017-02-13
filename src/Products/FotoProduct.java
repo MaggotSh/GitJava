@@ -20,8 +20,8 @@ public class FotoProduct extends Product {
         this.digital = digital;
     }
         @Override
-    protected int colcDiscont (){
-        int def = super.colcDiscont();
+    protected int colcDiscont (int quntity){
+        int def = super.colcDiscont(quntity);
         if(!digital){
             def += NOT_DIGITAL_DISCONT;
         }
@@ -36,7 +36,7 @@ public class FotoProduct extends Product {
         sb.append("  Megapx: ");
         sb.append(getMegapx());
         if(isDigital()){
-            sb.append(" is digital   ");
+            sb.append(" is digital");
         }
         return sb.toString();
     }
