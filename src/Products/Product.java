@@ -1,9 +1,12 @@
 package Products;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Product {
 
     private static final int DEF_DISCONT = 10;
-
+    public static List<Product> allProducts = new ArrayList<>();
     private String title;
     private double price;
 
@@ -22,7 +25,6 @@ public abstract class Product {
 
     public double getCost(int quntity){
         double realCost = quntity*price;
-
         return realCost - realCost*colcDiscont(quntity)/100;
     }
 

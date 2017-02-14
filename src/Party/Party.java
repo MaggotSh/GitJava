@@ -30,16 +30,16 @@ public class Party {
         StringBuilder sb = new StringBuilder();
         sb.append("name: ");
         sb.append(getName());
-        sb.append("; adress : ");
+        sb.append(", adress : ");
         sb.append(getAdress());
-        sb.append("; ");
+        sb.append(", ");
         if(!info.isEmpty()){
             for(Map.Entry<String,String> en : info.entrySet()) {
 
                 sb.append(en.getKey());
                 sb.append(": ");
                 sb.append(en.getValue());
-                sb.append("; ");
+                sb.append(", ");
             }
         }
         return sb.toString();

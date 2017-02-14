@@ -3,7 +3,6 @@ package Products;
 public class FotoProduct extends Product {
 
     private static final int NOT_DIGITAL_DISCONT = 20;
-
     private double megapx;
     private boolean digital;
 
