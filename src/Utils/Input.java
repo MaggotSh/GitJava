@@ -1,7 +1,7 @@
 package Utils;
 
-import Deal.Deal;
-import Party.Party;
+import Program.Deal;
+import Program.Party;
 import Products.BotinkiProduct;
 import Products.FotoProduct;
 import Products.Product;

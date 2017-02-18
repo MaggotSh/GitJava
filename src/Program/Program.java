@@ -1,6 +1,5 @@
 package Program;
 
-import Deal.Deal;
 import Products.Product;
 import java.util.Map;
 import static Utils.Input.input;

@@ -1,6 +1,5 @@
-package Deal;
+package Program;
 
-import Party.Party;
 import Products.Product;
 import java.util.Date;
 import java.util.Map;
